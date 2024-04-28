@@ -1,6 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { FlatList, ScrollView, StyleSheet, Text, SafeAreaView } from "react-native";
-import React, { useState, useEffect } from "react";
+import JournalEntry from "./components/JournalEntry";
+import Heading from "./components/Heading";
+import { SafeAreaView,FlatList } from "react-native";
+import styles,{container} from "./Appstyles";
+import React, { useState, useEffect } from 'react';
 
 export default function App() {
   const [journals, setJournals] = useState([]);
@@ -13,28 +15,14 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <Text>Welcome to Memory Lane</Text>
+    <SafeAreaView style={container}>
+      <Heading title={"Memory Lane"}/>
       <FlatList
         data={journals}
-        renderItem={({ item }) => {
-          return (
-            <>
-              <Text>{item.name}</Text>
-              <Text>{item.entry}</Text>
-            </>
-          );
-        }}
-        keyExtractor={item => item._id}
+        renderItem={({ item }) => <JournalEntry journal={item} />}
+        keyExtractor={(item) => item._id}
       />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-});
