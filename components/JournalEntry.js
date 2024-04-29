@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { format } from "date-fns";
+import { useNavigation } from "@react-navigation/native";
 
 const JournalEntry = ({ journal }) => {
   const { name, author_First_Name, author_Last_Name, entry, createdAt } =
     journal;
 
   const formattedDate = format(new Date(createdAt), "MMMM d, yyyy");
+  const navigation = useNavigation();
 
   return (
     <View style={styles.journalCard}>
@@ -15,6 +17,10 @@ const JournalEntry = ({ journal }) => {
         {author_First_Name} {author_Last_Name} - {formattedDate}
       </Text>
       <Text style={styles.entryText}>{entry}</Text>
+      <Button
+        onPress={() => navigation.navigate("Details", { journal })}
+        title={"See Details"}
+      ></Button>
     </View>
   );
 };
