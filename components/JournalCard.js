@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { format } from "date-fns";
 
-const JournalEntry = ({ journal }) => {
+const JournalCard = ({ journal }) => {
   const { name, author_First_Name, author_Last_Name, entry, createdAt } =
     journal;
 
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
   },
   entryTitle: {
     fontSize: 18,
@@ -46,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default JournalEntry;
+export default JournalCard;

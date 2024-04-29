@@ -1,31 +1,18 @@
-import JournalEntry from "./components/JournalEntry";
-import Heading from "./components/Heading";
-import { SafeAreaView, FlatList } from "react-native";
-import styles, { container } from "./Appstyles";
+import HomeScreen from "./Screens/HomeScreen";
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen() {
-  const [journals, setJournals] = useState([]);
-  const API_BASE = "http://localhost:8000";
 
-  useEffect(() => {
-    fetch(`${API_BASE}/journals`)
-      .then((response) => response.json())
-      .then((data) => setJournals(data));
-  }, []);
+
+function DetailsScreen() {
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Heading title={"Memory Lane"} />
-      <FlatList
-        data={journals}
-        renderItem={({ item }) => <JournalEntry journal={item} />}
-        keyExtractor={(item) => item._id}
-      />
-    </SafeAreaView>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+    </View>
   );
 }
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -33,6 +20,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
