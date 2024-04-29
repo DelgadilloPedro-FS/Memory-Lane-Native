@@ -1,13 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { format } from 'date-fns'; // for date formatting
+import React from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
+import { format } from "date-fns";
+import { useNavigation } from "@react-navigation/native";
 
 const JournalEntry = ({ journal }) => {
-  // Destructure journal data for cleaner access
-  const { name, author_First_Name, author_Last_Name, entry, createdAt } = journal;
+  const { name, author_First_Name, author_Last_Name, entry, createdAt } =
+    journal;
 
-  // Format the date for a more user-friendly display
-  const formattedDate = format(new Date(createdAt), 'MMMM d, yyyy');
+  const formattedDate = format(new Date(createdAt), "MMMM d, yyyy");
+  const navigation = useNavigation();
 
   return (
     <View style={styles.journalCard}>
@@ -16,30 +17,34 @@ const JournalEntry = ({ journal }) => {
         {author_First_Name} {author_Last_Name} - {formattedDate}
       </Text>
       <Text style={styles.entryText}>{entry}</Text>
+      <Button
+        onPress={() => navigation.navigate("Details", { journal })}
+        title={"See Details"}
+      ></Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   journalCard: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 16,
     marginBottom: 12,
     borderRadius: 4,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2, // For Android shadow effect
+    elevation: 2,
   },
   entryTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 8,
   },
   authorText: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
     marginBottom: 4,
   },
   entryText: {
