@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     margin: 16, 
+    padding:1
   },
 });
 
