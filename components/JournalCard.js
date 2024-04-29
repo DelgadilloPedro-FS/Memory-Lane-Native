@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 const JournalCard = ({ journal, onDelete, onEdit }) => {
   const navigation = useNavigation()
 
-  const { name, author_First_Name, author_Last_Name, entry, createdAt, _id } = journal; // Include _id for identification
+  const { name, author_First_Name, author_Last_Name, entry, createdAt, _id } = journal;
   const formattedDate = format(new Date(createdAt), 'MMMM d, yyyy');
 
   const [isEditing, setIsEditing] = useState(false);
